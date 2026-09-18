@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Upload Media - VerityAI</title>
+
+
+<link rel="stylesheet" href="css/style.css">
+
+</head>
+
+
+<body>
+
+
+<header class="navbar">
+
+    <div class="nav-left">
+
+        <div class="logo">
+            VerityAI
+        </div>
+
+
+        <div class="tagline">
+            Cek Fakta AI Mudah & Cepat
+        </div>
+
+    </div>
+
+
+    <nav>
+
+        <a href="index.html">
+            Home
+        </a>
+
+        <a class="active">
+            Cek Media
+        </a>
+
+        <a>
+            Bantuan
+        </a>
+
+    </nav>
+
+
+    <div class="profile">
+        ●
+    </div>
+
+
+</header>
+
+
+
+<main>
+
+
+<section class="upload-page">
+
+
+<div class="hero-badge">
+    🏅 Langkah 1 dari 3: Pilih Konten
+</div>
+
+
+
+<h1>
+    Upload Foto atau Video
+</h1>
+
+
+<p>
+    Tarik file ke sini atau pilih langsung dari perangkat Anda.
+</p>
+
+
+
+<div class="upload-box">
+
+
+<div class="upload-icon">
+
+    <div class="cloud-circle">
+        ☁
+    </div>
+
+    <div class="plus-icon">
+        +
+    </div>
+
+</div>
+
+<input 
+    type="file" 
+    id="fileInput"
+    accept="image/png,image/jpeg,video/mp4"
+    hidden
+>
+
+
+<button 
+id="chooseButton"
+class="choose-btn"
+onclick="chooseFile()">
+
+Pilih File
+
+</button>
+
+<div id="previewContainer">
+
+<div id="previewContainer" class="hidden">
+
+</div>
+
+</div>
+
+
+
+<div id="previewContainer"></div>
+
+<p id="fileName"></p>
+
+<p>
+    JPG, PNG, atau MP4
+</p>
+
+
+<span>
+    Maksimal 50 MB
+</span>
+
+
+</div>
+
+
+</section>
+
+<button 
+id="checkButton"
+class="primary-btn"
+onclick="goAnalysis()">
+
+Cek Sekarang →
+
+</button>
+
+</main>
+
+
+<footer>
+    VerityAI © 2025
+</footer>
+
+<script src="js/script.js"></script>
+
+</body>
+
+</html>
+
