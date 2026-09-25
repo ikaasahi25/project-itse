@@ -110,6 +110,7 @@ video {
     text-decoration: none;
 }
 
+
 .logo-image {
     width: 100%;
     height: 100%;
@@ -240,6 +241,7 @@ nav a.active {
 
 .primary-btn {
     display: inline-flex;
+
     align-items: center;
     justify-content: center;
 
@@ -491,6 +493,7 @@ nav a.active {
 
 
 /* GRID */
+
 .step-container {
     display: grid;
 
@@ -841,11 +844,25 @@ nav a.active {
     cursor: pointer;
 
     transition:
-        transform 0.2s ease,
-        box-shadow 0.2s ease,
-        opacity 0.2s ease;
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        opacity 0.25s ease,
+        filter 0.25s ease;
 }
 
+
+/* NORMAL SAAT SUDAH BISA DIPAKAI */
+
+.upload-page #checkButton:not(:disabled) {
+    opacity: 1;
+
+    filter: none;
+
+    cursor: pointer;
+}
+
+
+/* HOVER HANYA SAAT AKTIF */
 
 .upload-page #checkButton:hover:not(:disabled) {
     transform: translateY(-2px);
@@ -855,10 +872,20 @@ nav a.active {
 }
 
 
-.upload-page #checkButton:disabled {
-    opacity: 0.5;
+/* =====================================================
+   DISABLED
+   SAAT BELUM PILIH FOTO / VIDEO
+===================================================== */
+
+.upload-page 
+#checkButton:disabled {
+    opacity: 0.25;
+
+    filter: grayscale(0.35);
 
     cursor: not-allowed;
+
+    pointer-events: none;
 
     transform: none;
 
@@ -1762,6 +1789,7 @@ footer {
     /*
        LOGO MOBILE
     */
+
     .logo {
         width: 115px;
         height: 45px;
@@ -1977,14 +2005,19 @@ footer {
 
 }
 
+
 /* =================================================
    SCROLL ANIMATION - TIGA LANGKAH
 ================================================= */
 
 /* Kondisi awal sebelum muncul */
+
 .step-card {
     opacity: 0;
-    transform: translateY(60px);
+
+    transform:
+        translateY(60px);
+
     transition:
         opacity 0.7s ease,
         transform 0.7s ease;
@@ -1992,24 +2025,33 @@ footer {
 
 
 /* Kondisi setelah muncul */
+
 .step-card.show {
     opacity: 1;
-    transform: translateY(0);
+
+    transform:
+        translateY(0);
 }
 
 
-/* Muncul satu per satu */
+/* =================================================
+   MUNCUL SATU PER SATU
+================================================= */
+
 .step-card:nth-child(1) {
     transition-delay: 0s;
 }
+
 
 .step-card:nth-child(2) {
     transition-delay: 0.2s;
 }
 
+
 .step-card:nth-child(3) {
     transition-delay: 0.4s;
 }
+
 
 /* =========================================
    ANIMASI FADE IN HALAMAN UPLOAD
@@ -2017,8 +2059,12 @@ footer {
 
 .upload-page > * {
     opacity: 0;
-    transform: translateY(25px);
-    animation: uploadFadeIn 0.8s ease-out forwards;
+
+    transform:
+        translateY(25px);
+
+    animation:
+        uploadFadeIn 0.8s ease-out forwards;
 }
 
 
@@ -2028,17 +2074,21 @@ footer {
     animation-delay: 0.1s;
 }
 
+
 .upload-page > h1 {
     animation-delay: 0.25s;
 }
+
 
 .upload-page > p {
     animation-delay: 0.4s;
 }
 
+
 .upload-page > .upload-box {
     animation-delay: 0.55s;
 }
+
 
 .upload-page > #checkButton {
     animation-delay: 0.7s;
@@ -2051,12 +2101,42 @@ footer {
 
     from {
         opacity: 0;
-        transform: translateY(25px);
+
+        transform:
+            translateY(25px);
     }
 
     to {
         opacity: 1;
-        transform: translateY(0);
+
+        transform:
+            translateY(0);
     }
 
+} 
+/* =================================================
+   CEK SEKARANG - SAAT BELUM ADA FILE
+================================================= */
+
+#checkButton:disabled {
+    background: #e8e8e8 !important;
+    color: #aaaaaa !important;
+    border: 1px solid #dddddd !important;
+
+    opacity: 0.45 !important;
+
+    box-shadow: none !important;
+    cursor: not-allowed !important;
+
+    transform: none !important;
+    filter: grayscale(100%) !important;
+
+    pointer-events: none;
+}
+
+/* Saat tombol sudah aktif */
+#checkButton:not(:disabled) {
+    opacity: 1 !important;
+    filter: none !important;
+    cursor: pointer !important;
 }
