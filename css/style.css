@@ -2010,3 +2010,53 @@ footer {
 .step-card:nth-child(3) {
     transition-delay: 0.4s;
 }
+
+/* =========================================
+   ANIMASI FADE IN HALAMAN UPLOAD
+========================================= */
+
+.upload-page > * {
+    opacity: 0;
+    transform: translateY(25px);
+    animation: uploadFadeIn 0.8s ease-out forwards;
+}
+
+
+/* Urutan muncul */
+
+.upload-page > .hero-badge {
+    animation-delay: 0.1s;
+}
+
+.upload-page > h1 {
+    animation-delay: 0.25s;
+}
+
+.upload-page > p {
+    animation-delay: 0.4s;
+}
+
+.upload-page > .upload-box {
+    animation-delay: 0.55s;
+}
+
+.upload-page > #checkButton {
+    animation-delay: 0.7s;
+}
+
+
+/* Animasi */
+
+@keyframes uploadFadeIn {
+
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
