@@ -2140,3 +2140,230 @@ footer {
     filter: none !important;
     cursor: pointer !important;
 }
+
+/* =================================================
+   BANTUAN - SCROLL REVEAL
+================================================= */
+
+.help-reveal {
+    opacity: 0;
+    transform: translateY(35px);
+    transition:
+        opacity 0.8s ease,
+        transform 0.8s ease;
+}
+
+
+/* Saat terlihat */
+
+.help-reveal.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+/* Kartu bantuan muncul sedikit lebih pelan */
+
+.help-card.help-reveal:nth-child(1) {
+    transition-delay: 0.05s;
+}
+
+.help-card.help-reveal:nth-child(2) {
+    transition-delay: 0.2s;
+}
+
+.help-card.help-reveal:nth-child(3) {
+    transition-delay: 0.35s;
+}
+
+
+/* =================================================
+   HOVER KARTU BANTUAN
+================================================= */
+
+.help-card {
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+
+.help-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.10);
+}
+
+
+/* =================================================
+   FAQ
+================================================= */
+
+.faq-item {
+    overflow: hidden;
+}
+
+
+.faq-question {
+    width: 100%;
+    border: none;
+    background: transparent;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 20px;
+
+    padding: 20px 22px;
+
+    font-family: inherit;
+    font-size: 17px;
+    font-weight: 600;
+
+    color: #102a43;
+
+    text-align: left;
+
+    cursor: pointer;
+
+    transition:
+        background 0.25s ease,
+        color 0.25s ease;
+}
+
+
+.faq-question:hover {
+    background: rgba(0, 0, 0, 0.025);
+}
+
+
+/* Tombol FAQ yang sedang dibuka */
+
+.faq-item.open .faq-question {
+    color: #1267a5;
+}
+
+
+/* =================================================
+   ICON + / -
+================================================= */
+
+.faq-arrow {
+    min-width: 30px;
+    height: 30px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #eef6ff;
+
+    font-size: 22px;
+    font-weight: 400;
+
+    color: #1267a5;
+
+    transition:
+        transform 0.3s ease,
+        background 0.3s ease;
+}
+
+
+.faq-item.open .faq-arrow {
+    transform: rotate(45deg);
+    background: #dceeff;
+}
+
+
+/* =================================================
+   JAWABAN FAQ
+================================================= */
+
+.faq-answer {
+    display: grid;
+    grid-template-rows: 0fr;
+
+    transition:
+        grid-template-rows 0.35s ease;
+}
+
+
+.faq-answer p {
+    min-height: 0;
+    overflow: hidden;
+
+    margin: 0;
+    padding: 0 22px;
+
+    line-height: 1.7;
+
+    opacity: 0;
+
+    transition:
+        opacity 0.25s ease,
+        padding 0.35s ease;
+}
+
+
+/* FAQ terbuka */
+
+.faq-item.open .faq-answer {
+    grid-template-rows: 1fr;
+}
+
+
+.faq-item.open .faq-answer p {
+    padding-top: 0;
+    padding-bottom: 20px;
+    opacity: 1;
+}
+
+
+/* =================================================
+   RESPONSIVE
+================================================= */
+
+@media (max-width: 768px) {
+
+    .help-container {
+        grid-template-columns: 1fr;
+    }
+
+
+    .faq-question {
+        font-size: 15px;
+        padding: 18px;
+    }
+
+
+    .faq-answer p {
+        padding-left: 18px;
+        padding-right: 18px;
+    }
+
+}
+
+
+/* =================================================
+   REDUCED MOTION
+================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .help-reveal {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+
+
+    .help-card,
+    .faq-arrow,
+    .faq-answer,
+    .faq-answer p {
+        transition: none;
+    }
+
+}

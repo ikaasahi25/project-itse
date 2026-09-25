@@ -1652,3 +1652,128 @@ const stepObserver = new IntersectionObserver(
 stepCards.forEach((card) => {
     stepObserver.observe(card);
 });
+
+/* =================================================
+   BANTUAN - INTERAKTIF
+================================================= */
+
+document.addEventListener("DOMContentLoaded", function () {
+
+
+    /* =================================================
+       SCROLL REVEAL
+    ================================================= */
+
+    const helpElements =
+        document.querySelectorAll(".help-reveal");
+
+
+    if (helpElements.length > 0) {
+
+        const revealObserver =
+            new IntersectionObserver(
+                function (entries, observer) {
+
+                    entries.forEach(function (entry) {
+
+                        if (entry.isIntersecting) {
+
+                            entry.target.classList.add("show");
+
+                            observer.unobserve(entry.target);
+
+                        }
+
+                    });
+
+                },
+                {
+                    threshold: 0.15
+                }
+            );
+
+
+        helpElements.forEach(function (element) {
+
+            revealObserver.observe(element);
+
+        });
+
+    }
+
+
+
+    /* =================================================
+       FAQ ACCORDION
+    ================================================= */
+
+    const faqQuestions =
+        document.querySelectorAll(".faq-question");
+
+
+    faqQuestions.forEach(function (question) {
+
+        question.addEventListener("click", function () {
+
+            const faqItem =
+                question.closest(".faq-item");
+
+
+            const isOpen =
+                faqItem.classList.contains("open");
+
+
+            /* Tutup FAQ lain */
+
+            document
+                .querySelectorAll(".faq-item.open")
+                .forEach(function (item) {
+
+                    if (item !== faqItem) {
+
+                        item.classList.remove("open");
+
+                        const otherButton =
+                            item.querySelector(".faq-question");
+
+                        if (otherButton) {
+
+                            otherButton.setAttribute(
+                                "aria-expanded",
+                                "false"
+                            );
+
+                        }
+
+                    }
+
+                });
+
+
+            /* Buka / tutup FAQ yang diklik */
+
+            if (isOpen) {
+
+                faqItem.classList.remove("open");
+
+                question.setAttribute(
+                    "aria-expanded",
+                    "false"
+                );
+
+            } else {
+
+                faqItem.classList.add("open");
+
+                question.setAttribute(
+                    "aria-expanded",
+                    "true"
+                );
+
+            }
+
+        });
+
+    });
+
+});

@@ -3,13 +3,19 @@
 
 <head>
 
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-<title>Hasil Pemeriksaan - VerityAI</title>
+    <title>Hasil Pemeriksaan - VerityAI</title>
 
-<link rel="stylesheet" href="css/style.css">
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
 
 </head>
 
@@ -17,398 +23,361 @@
 <body>
 
 
-<header class="navbar">
+    <!-- =================================================
+         NAVBAR
+    ================================================== -->
 
+    <header class="navbar">
 
-<div class="nav-left">
+        <div class="nav-left">
 
-    <a
-                href="result.html"
+            <!-- LOGO -->
+            <a
+                href="index.html"
                 class="logo"
                 aria-label="Kembali ke halaman utama VerityAI"
             >
+
                 <img
                     src="assets/images/icons/logo/logo VerityAI.png"
                     alt="Logo VerityAI"
                     class="logo-image"
                 >
+
             </a>
 
 
-    <div class="tagline">
-        Cek Fakta AI Mudah & Cepat
-    </div>
+            <!-- TAGLINE -->
+            <div class="tagline">
+                Cek Fakta AI Mudah &amp; Cepat
+            </div>
 
-</div>
-
-
-
-<nav>
-
-<a href="index.html">
-Home
-</a>
-
-
-<a class="active">
-Cek Media
-</a>
-
-
-<a>
-Bantuan
-</a>
-
-
-</nav>
-
-
-
-
-
-</header>
-
-
-
-
-<main>
-
-
-<section class="result-page">
-
-
-
-<div class="status-badge">
-
-🏅 Langkah 3 dari 3: Hasil Akhir
-
-</div>
-
-
-
-
-<h1>
-Hasil Pemeriksaan
-</h1>
-
-
-<p>
-Sistem selesai menganalisis konten visual Anda.
-</p>
-
-
-
-
-
-<div class="result-card">
-
-
-
-<div class="result-image-box">
-
-
-<img 
-id="resultImage"
-class="result-image"
-alt="Hasil Upload"
->
-
-
-</div>
-
-
-
-
-
-<div class="result-content">
-
-
-
-<div class="result-header">
-
-
-<h3>
-SKOR DETEKSI AI
-</h3>
-
-
-
-<div 
-id="resultBadge"
-class="result-badge">
-
-</div>
-
-
-
-</div>
-
-
-
-
-
-
-<h2>
-
-Kemungkinan AI:
-
-<span id="score">
-0%
-</span>
-
-
-</h2>
-
-
-
-
-
-
-<div class="result-bar">
-
-<div 
-id="resultProgress">
-
-</div>
-
-</div>
-
-
-
-
-
-
-<p id="resultStatus">
-
-Menganalisis hasil...
-
-</p>
-
-
-
-
-
-
-<div class="scale">
-
-
-<span id="naturalScore">
-
-0% Konten Alami
-
-</span>
-
-
-
-
-<span id="aiScoreText">
-
-100% Indikasi AI
-
-</span>
-
-
-</div>
-
-
-
-
-</div>
-
-
-</div>
-
-
-
-
-
-
-
-
-
-<div class="factor-section">
-
-
-<h2>
-Kenapa hasilnya seperti ini?
-</h2>
-
-
-
-
-
-<div class="factor-container">
-
-
-
-
-
-<div class="factor-card">
-
-
-<h3>
-🖼️ Detail Tekstur
-</h3>
-
-
-<p>
-Pemeriksaan pola visual dan konsistensi tekstur gambar.
-</p>
-
-
-</div>
-
-
-
-
-
-<div class="factor-section">
-
-    <h2>
-        Kenapa hasilnya seperti ini?
-    </h2>
-
-    <p>
-        Ringkasan karakteristik visual yang ditemukan pada konten.
-    </p>
-
-
-    <div class="factor-container">
-
-        <div class="factor-card">
-            <h3 id="factorTitle1">
-                Analisis Detail
-            </h3>
-
-            <p id="factorText1">
-                Sedang membaca karakteristik gambar...
-            </p>
         </div>
 
 
-        <div class="factor-card">
-            <h3 id="factorTitle2">
-                Analisis Pencahayaan
-            </h3>
+        <!-- NAVIGASI -->
+        <nav aria-label="Navigasi utama">
 
-            <p id="factorText2">
-                Sedang membaca karakteristik gambar...
+            <a href="index.html">
+                Home
+            </a>
+
+
+            <a
+                href="upload.html"
+                class="active"
+            >
+                Cek Media
+            </a>
+
+
+            <a href="bantuan.html">
+                Bantuan
+            </a>
+
+        </nav>
+
+    </header>
+
+
+
+    <!-- =================================================
+         MAIN
+    ================================================== -->
+
+    <main>
+
+        <section class="result-page">
+
+
+            <!-- STATUS -->
+
+            <div class="status-badge">
+                🏅 Langkah 3 dari 3: Hasil Akhir
+            </div>
+
+
+
+            <!-- TITLE -->
+
+            <h1>
+                Hasil Pemeriksaan
+            </h1>
+
+
+            <p>
+                Sistem selesai menganalisis konten visual Anda.
             </p>
-        </div>
 
 
-        <div class="factor-card">
-            <h3 id="factorTitle3">
-                Analisis Tekstur
-            </h3>
 
-            <p id="factorText3">
-                Sedang membaca karakteristik gambar...
-            </p>
-        </div>
+            <!-- =================================================
+                 RESULT CARD
+            ================================================== -->
 
-    </div>
+            <div class="result-card">
 
-</div>
 
+                <!-- HASIL GAMBAR -->
 
-<h3>
-🔍 Pola Visual
-</h3>
+                <div class="result-image-box">
 
+                    <img
+                        id="resultImage"
+                        class="result-image"
+                        alt="Hasil Upload"
+                    >
 
-<p>
-Analisis struktur pixel dan detail visual yang terlihat.
-</p>
+                </div>
 
 
-</div>
 
+                <!-- HASIL ANALISIS -->
 
+                <div class="result-content">
 
 
+                    <div class="result-header">
 
-<div class="factor-card">
+                        <h3>
+                            SKOR DETEKSI AI
+                        </h3>
 
 
-<h3>
-⚙️ Konsistensi Konten
-</h3>
+                        <div
+                            id="resultBadge"
+                            class="result-badge"
+                        >
+                        </div>
 
+                    </div>
 
-<p>
-Pemeriksaan kesesuaian elemen visual pada media.
-</p>
 
 
-</div>
+                    <h2>
 
+                        Kemungkinan AI:
 
+                        <span id="score">
+                            0%
+                        </span>
 
+                    </h2>
 
 
-</div>
 
+                    <!-- PROGRESS BAR -->
 
-</div>
+                    <div class="result-bar">
 
+                        <div
+                            id="resultProgress"
+                        >
+                        </div>
 
+                    </div>
 
 
 
+                    <!-- STATUS HASIL -->
 
+                    <p id="resultStatus">
+                        Menganalisis hasil...
+                    </p>
 
-<div class="warning-box">
 
 
-<h3>
-Tindakan Disarankan
-</h3>
+                    <!-- SKALA -->
 
+                    <div class="scale">
 
-<p>
-Periksa kembali sumber konten sebelum mempercayai atau membagikannya.
-</p>
+                        <span id="naturalScore">
+                            0% Konten Alami
+                        </span>
 
 
-</div>
+                        <span id="aiScoreText">
+                            100% Indikasi AI
+                        </span>
 
+                    </div>
 
 
+                </div>
 
+            </div>
 
 
-<a href="upload.html" class="primary-btn">
 
-Cek Konten Lain →
+            <!-- =================================================
+                 FAKTOR HASIL
+            ================================================== -->
 
-</a>
+            <div class="factor-section">
 
 
+                <h2>
+                    Kenapa hasilnya seperti ini?
+                </h2>
 
 
+                <p>
+                    Ringkasan karakteristik visual yang ditemukan
+                    pada konten.
+                </p>
 
-</section>
 
 
-</main>
+                <div class="factor-container">
 
 
+                    <!-- FAKTOR 1 -->
 
+                    <div class="factor-card">
 
+                        <h3 id="factorTitle1">
+                            🖼️ Analisis Detail
+                        </h3>
 
 
-<footer>
+                        <p id="factorText1">
+                            Sedang membaca karakteristik gambar...
+                        </p>
 
-VerityAI © 2025
+                    </div>
 
-</footer>
 
 
+                    <!-- FAKTOR 2 -->
 
+                    <div class="factor-card">
 
+                        <h3 id="factorTitle2">
+                            💡 Analisis Pencahayaan
+                        </h3>
 
-<script src="js/script.js"></script>
+
+                        <p id="factorText2">
+                            Sedang membaca karakteristik gambar...
+                        </p>
+
+                    </div>
+
+
+
+                    <!-- FAKTOR 3 -->
+
+                    <div class="factor-card">
+
+                        <h3 id="factorTitle3">
+                            🖼️ Analisis Tekstur
+                        </h3>
+
+
+                        <p id="factorText3">
+                            Sedang membaca karakteristik gambar...
+                        </p>
+
+                    </div>
+
+
+
+                    <!-- FAKTOR 4 -->
+
+                    <div class="factor-card">
+
+                        <h3>
+                            🔍 Pola Visual
+                        </h3>
+
+
+                        <p>
+                            Analisis struktur pixel dan detail
+                            visual yang terlihat.
+                        </p>
+
+                    </div>
+
+
+
+                    <!-- FAKTOR 5 -->
+
+                    <div class="factor-card">
+
+                        <h3>
+                            ⚙️ Konsistensi Konten
+                        </h3>
+
+
+                        <p>
+                            Pemeriksaan kesesuaian elemen visual
+                            pada media.
+                        </p>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 WARNING
+            ================================================== -->
+
+            <div class="warning-box">
+
+                <h3>
+                    Tindakan Disarankan
+                </h3>
+
+
+                <p>
+                    Periksa kembali sumber konten sebelum
+                    mempercayai atau membagikannya.
+                </p>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 BUTTON
+            ================================================== -->
+
+            <a
+                href="upload.html"
+                class="primary-btn"
+            >
+                Cek Konten Lain →
+            </a>
+
+
+        </section>
+
+    </main>
+
+
+
+    <!-- =================================================
+         FOOTER
+    ================================================== -->
+
+    <footer>
+
+        VerityAI © 2026
+
+    </footer>
+
+
+
+    <!-- =================================================
+         JAVASCRIPT
+    ================================================== -->
+
+    <script src="js/script.js"></script>
 
 
 </body>
