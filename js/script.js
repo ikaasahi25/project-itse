@@ -1621,3 +1621,34 @@ if (factorCards.length > 0) {
     );
 
 }
+
+/* =================================================
+   SCROLL ANIMATION - TIGA LANGKAH
+================================================= */
+
+const stepCards = document.querySelectorAll(".step-card");
+
+const stepObserver = new IntersectionObserver(
+    (entries, observer) => {
+
+        entries.forEach((entry) => {
+
+            if (entry.isIntersecting) {
+
+                entry.target.classList.add("show");
+
+                observer.unobserve(entry.target);
+            }
+
+        });
+
+    },
+    {
+        threshold: 0.2
+    }
+);
+
+
+stepCards.forEach((card) => {
+    stepObserver.observe(card);
+});
