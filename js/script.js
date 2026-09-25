@@ -10,7 +10,8 @@
 
 function chooseFile() {
 
-    const input = document.getElementById("fileInput");
+    const input =
+        document.getElementById("fileInput");
 
     if (input) {
         input.click();
@@ -20,366 +21,416 @@ function chooseFile() {
 
 
 
-const fileInput = document.getElementById("fileInput");
+const fileInput =
+    document.getElementById("fileInput");
 
 
 if (fileInput) {
 
-    fileInput.addEventListener("change", function () {
-
-        const file = this.files[0];
-
-        if (!file) {
-            return;
-        }
-
-
-
-        // =========================
-        // VALIDASI FORMAT
-        // =========================
-
-        const allowedTypes = [
-            "image/jpeg",
-            "image/png",
-            "video/mp4"
-        ];
-
-
-        if (!allowedTypes.includes(file.type)) {
-
-            alert(
-                "Format file tidak didukung. Gunakan JPG, PNG, atau MP4."
-            );
-
-            this.value = "";
-
-            return;
-
-        }
-
-
-
-        // =========================
-        // VALIDASI UKURAN 50 MB
-        // =========================
-
-        const maxSize =
-            50 * 1024 * 1024;
-
-
-        if (file.size > maxSize) {
-
-            alert(
-                "Ukuran file terlalu besar. Maksimal 50 MB."
-            );
-
-            this.value = "";
-
-            return;
-
-        }
-
-
-
-        // =========================
-        // AMBIL ELEMENT
-        // =========================
-
-        const preview =
-            document.getElementById("previewContainer");
-
-
-        const fileName =
-            document.getElementById("fileName");
-
-
-        const icon =
-            document.querySelector(".upload-icon");
-
-
-        const chooseButton =
-            document.getElementById("chooseButton");
-
-
-        const checkButton =
-            document.getElementById("checkButton");
-
-
-
-        // Saat sedang membaca file,
-        // tombol masih belum bisa ditekan
-
-        if (checkButton) {
-            checkButton.disabled = true;
-        }
-
-
-
-        // Bersihkan preview lama
-
-        if (preview) {
-            preview.innerHTML = "";
-        }
-
-
-
-        // Tampilkan nama file
-
-        if (fileName) {
-
-            fileName.textContent =
-                "📁 " + file.name;
-
-        }
-
-
-
-        // =========================
-        // SIMPAN FILE KE LOCALSTORAGE
-        // =========================
-
-        const reader =
-            new FileReader();
-
-
-        reader.onload = function (event) {
-
-            localStorage.setItem(
-                "uploadedFile",
-                event.target.result
-            );
-
-
-            localStorage.setItem(
-                "fileName",
-                file.name
-            );
-
-
-            localStorage.setItem(
-                "fileType",
-                file.type
-            );
-
-
-
-            // Setelah file benar-benar selesai
-            // dibaca, tombol Cek Sekarang aktif
-
-            if (checkButton) {
-
-                checkButton.disabled = false;
-
+    fileInput.addEventListener(
+        "change",
+        function () {
+
+            const file =
+                this.files[0];
+
+            if (!file) {
+                return;
             }
 
-        };
 
 
-        reader.readAsDataURL(file);
+            // =================================================
+            // VALIDASI FORMAT
+            // =================================================
 
+            const allowedTypes = [
+                "image/jpeg",
+                "image/png",
+                "video/mp4"
+            ];
 
 
-        // =========================
-        // SEMBUNYIKAN ICON & PILIH FILE
-        // =========================
+            if (
+                !allowedTypes.includes(
+                    file.type
+                )
+            ) {
 
-        if (icon) {
-            icon.style.display = "none";
-        }
+                alert(
+                    "Format file tidak didukung. Gunakan JPG, PNG, atau MP4."
+                );
 
+                this.value = "";
 
-        if (chooseButton) {
-            chooseButton.style.display = "none";
-        }
+                return;
+            }
 
 
 
-        // =========================
-        // BUAT PREVIEW
-        // =========================
+            // =================================================
+            // VALIDASI UKURAN 50 MB
+            // =================================================
 
-        const wrapper =
-            document.createElement("div");
+            const maxSize =
+                50 * 1024 * 1024;
 
 
-        wrapper.className =
-            "preview-wrapper";
+            if (
+                file.size > maxSize
+            ) {
 
+                alert(
+                    "Ukuran file terlalu besar. Maksimal 50 MB."
+                );
 
+                this.value = "";
 
-        let media;
+                return;
+            }
 
 
-        const objectURL =
-            URL.createObjectURL(file);
 
+            // =================================================
+            // ELEMENT
+            // =================================================
 
-
-        if (file.type.startsWith("image/")) {
-
-            media =
-                document.createElement("img");
-
-
-            media.src =
-                objectURL;
-
-
-            media.alt =
-                "Preview file yang dipilih";
-
-        }
-
-        else {
-
-            media =
-                document.createElement("video");
-
-
-            media.src =
-                objectURL;
-
-
-            media.controls =
-                true;
-
-        }
-
-
-
-        media.className =
-            "preview-media";
-
-
-        wrapper.appendChild(media);
-
-
-
-        // =========================
-        // TOMBOL X / HAPUS
-        // =========================
-
-        const removeButton =
-            document.createElement("button");
-
-
-        removeButton.type =
-            "button";
-
-
-        removeButton.innerHTML =
-            "×";
-
-
-        removeButton.className =
-            "remove-btn";
-
-
-        removeButton.setAttribute(
-            "aria-label",
-            "Hapus file"
-        );
-
-
-
-        removeButton.addEventListener(
-            "click",
-            function () {
-
-                // hapus file input
-
-                fileInput.value = "";
-
-
-
-                // hapus preview
-
-                if (preview) {
-                    preview.innerHTML = "";
-                }
-
-
-
-                // hapus nama
-
-                if (fileName) {
-                    fileName.textContent = "";
-                }
-
-
-
-                // tampilkan icon kembali
-
-                if (icon) {
-                    icon.style.display = "flex";
-                }
-
-
-
-                // tampilkan Pilih File kembali
-
-                if (chooseButton) {
-                    chooseButton.style.display = "block";
-                }
-
-
-
-                // hapus penyimpanan
-
-                localStorage.removeItem(
-                    "uploadedFile"
+            const preview =
+                document.getElementById(
+                    "previewContainer"
                 );
 
 
-                localStorage.removeItem(
+            const fileName =
+                document.getElementById(
                     "fileName"
                 );
 
 
-                localStorage.removeItem(
-                    "fileType"
+            const icon =
+                document.querySelector(
+                    ".upload-icon"
                 );
 
 
-                localStorage.removeItem(
-                    "aiScore"
+            const chooseButton =
+                document.getElementById(
+                    "chooseButton"
+                );
+
+
+            const checkButton =
+                document.getElementById(
+                    "checkButton"
                 );
 
 
 
-                // tombol Cek Sekarang mati lagi
+            // =================================================
+            // MATIKAN TOMBOL SEMENTARA
+            // =================================================
 
-                if (checkButton) {
-                    checkButton.disabled = true;
+            if (checkButton) {
+
+                checkButton.disabled =
+                    true;
+
+            }
+
+
+
+            // =================================================
+            // BERSIHKAN PREVIEW
+            // =================================================
+
+            if (preview) {
+
+                preview.innerHTML =
+                    "";
+
+            }
+
+
+
+            // =================================================
+            // NAMA FILE
+            // =================================================
+
+            if (fileName) {
+
+                fileName.textContent =
+                    "📁 " + file.name;
+
+            }
+
+
+
+            // =================================================
+            // SIMPAN FILE
+            // =================================================
+
+            const reader =
+                new FileReader();
+
+
+            reader.onload =
+                function (event) {
+
+                    localStorage.setItem(
+                        "uploadedFile",
+                        event.target.result
+                    );
+
+
+                    localStorage.setItem(
+                        "fileName",
+                        file.name
+                    );
+
+
+                    localStorage.setItem(
+                        "fileType",
+                        file.type
+                    );
+
+
+                    // Aktifkan tombol setelah
+                    // file selesai dibaca
+
+                    if (checkButton) {
+
+                        checkButton.disabled =
+                            false;
+
+                    }
+
+                };
+
+
+            reader.readAsDataURL(
+                file
+            );
+
+
+
+            // =================================================
+            // SEMBUNYIKAN ICON
+            // =================================================
+
+            if (icon) {
+
+                icon.style.display =
+                    "none";
+
+            }
+
+
+            if (chooseButton) {
+
+                chooseButton.style.display =
+                    "none";
+
+            }
+
+
+
+            // =================================================
+            // PREVIEW FILE
+            // =================================================
+
+            const wrapper =
+                document.createElement(
+                    "div"
+                );
+
+
+            wrapper.className =
+                "preview-wrapper";
+
+
+            let media;
+
+
+            const objectURL =
+                URL.createObjectURL(
+                    file
+                );
+
+
+
+            if (
+                file.type.startsWith(
+                    "image/"
+                )
+            ) {
+
+                media =
+                    document.createElement(
+                        "img"
+                    );
+
+
+                media.src =
+                    objectURL;
+
+
+                media.alt =
+                    "Preview file yang dipilih";
+
+            }
+
+            else {
+
+                media =
+                    document.createElement(
+                        "video"
+                    );
+
+
+                media.src =
+                    objectURL;
+
+
+                media.controls =
+                    true;
+
+            }
+
+
+
+            media.className =
+                "preview-media";
+
+
+            wrapper.appendChild(
+                media
+            );
+
+
+
+            // =================================================
+            // TOMBOL HAPUS
+            // =================================================
+
+            const removeButton =
+                document.createElement(
+                    "button"
+                );
+
+
+            removeButton.type =
+                "button";
+
+
+            removeButton.innerHTML =
+                "×";
+
+
+            removeButton.className =
+                "remove-btn";
+
+
+            removeButton.setAttribute(
+                "aria-label",
+                "Hapus file"
+            );
+
+
+
+            removeButton.addEventListener(
+                "click",
+                function () {
+
+                    fileInput.value =
+                        "";
+
+
+                    if (preview) {
+
+                        preview.innerHTML =
+                            "";
+
+                    }
+
+
+                    if (fileName) {
+
+                        fileName.textContent =
+                            "";
+
+                    }
+
+
+                    if (icon) {
+
+                        icon.style.display =
+                            "flex";
+
+                    }
+
+
+                    if (chooseButton) {
+
+                        chooseButton.style.display =
+                            "block";
+
+                    }
+
+
+
+                    // Hapus data
+
+                    localStorage.removeItem(
+                        "uploadedFile"
+                    );
+
+
+                    localStorage.removeItem(
+                        "fileName"
+                    );
+
+
+                    localStorage.removeItem(
+                        "fileType"
+                    );
+
+
+                    localStorage.removeItem(
+                        "aiScore"
+                    );
+
+
+                    if (checkButton) {
+
+                        checkButton.disabled =
+                            true;
+
+                    }
+
+
+                    URL.revokeObjectURL(
+                        objectURL
+                    );
+
                 }
+            );
 
 
+            wrapper.appendChild(
+                removeButton
+            );
 
-                URL.revokeObjectURL(
-                    objectURL
+
+            if (preview) {
+
+                preview.appendChild(
+                    wrapper
                 );
 
             }
-        );
-
-
-
-        wrapper.appendChild(
-            removeButton
-        );
-
-
-
-        if (preview) {
-
-            preview.appendChild(
-                wrapper
-            );
 
         }
-
-    });
+    );
 
 }
 
@@ -392,12 +443,15 @@ if (fileInput) {
 function goAnalysis() {
 
     const input =
-        document.getElementById("fileInput");
+        document.getElementById(
+            "fileInput"
+        );
 
 
     const checkButton =
-        document.getElementById("checkButton");
-
+        document.getElementById(
+            "checkButton"
+        );
 
 
     if (
@@ -434,11 +488,11 @@ function goAnalysis() {
 
 
 
-    // cegah double click
-
     if (checkButton) {
 
-        checkButton.disabled = true;
+        checkButton.disabled =
+            true;
+
 
         checkButton.textContent =
             "Memproses...";
@@ -454,9 +508,6 @@ function goAnalysis() {
 
 
 
-// Kalau HTML tidak memakai onclick,
-// JS otomatis memasang event click
-
 const checkButton =
     document.getElementById(
         "checkButton"
@@ -465,7 +516,9 @@ const checkButton =
 
 if (
     checkButton &&
-    !checkButton.hasAttribute("onclick")
+    !checkButton.hasAttribute(
+        "onclick"
+    )
 ) {
 
     checkButton.addEventListener(
@@ -480,16 +533,13 @@ if (
 // =====================================================
 // SIMULASI SKOR DETEKSI AI
 // =====================================================
-//
-// CATATAN:
-// Ini masih simulasi untuk prototype,
-// belum merupakan model AI detector sungguhan.
-// =====================================================
 
 function detectAI(name) {
 
     if (!name) {
+
         return 20;
+
     }
 
 
@@ -530,8 +580,13 @@ function showStoredMedia(
     savedFile
 ) {
 
-    if (!element || !savedFile) {
+    if (
+        !element ||
+        !savedFile
+    ) {
+
         return;
+
     }
 
 
@@ -651,7 +706,10 @@ const circleProgress =
 
 
 
-if (progress && percent) {
+if (
+    progress &&
+    percent
+) {
 
     let value = 0;
 
@@ -664,21 +722,18 @@ if (progress && percent) {
 
 
 
-                // progress horizontal
+                // Progress
 
                 progress.style.width =
                     value + "%";
 
-
-
-                // angka persen
 
                 percent.textContent =
                     value + "%";
 
 
 
-                // lingkaran ikut bergerak
+                // Lingkaran
 
                 if (circleProgress) {
 
@@ -698,9 +753,9 @@ if (progress && percent) {
 
 
 
-                // =========================
+                // =================================================
                 // TEXT LOADING
-                // =========================
+                // =================================================
 
                 if (analysisText) {
 
@@ -770,11 +825,13 @@ if (progress && percent) {
 
 
 
-                // =========================
+                // =================================================
                 // SELESAI
-                // =========================
+                // =================================================
 
-                if (value >= 100) {
+                if (
+                    value >= 100
+                ) {
 
                     clearInterval(
                         timer
@@ -795,7 +852,6 @@ if (progress && percent) {
                         "aiScore",
                         String(aiScore)
                     );
-
 
 
                     setTimeout(
@@ -892,9 +948,10 @@ if (score) {
         );
 
 
-
     if (
-        Number.isNaN(aiScore)
+        Number.isNaN(
+            aiScore
+        )
     ) {
 
         aiScore = 20;
@@ -919,14 +976,18 @@ if (score) {
 
 
 
-    // angka utama
+    // =================================================
+    // ANGKA UTAMA
+    // =================================================
 
     score.textContent =
         aiScore + "%";
 
 
 
-    // progress
+    // =================================================
+    // PROGRESS
+    // =================================================
 
     if (resultProgress) {
 
@@ -943,7 +1004,9 @@ if (score) {
 
 
 
-    // angka bawah
+    // =================================================
+    // ANGKA BAWAH
+    // =================================================
 
     if (naturalScore) {
 
@@ -964,18 +1027,24 @@ if (score) {
 
 
 
-    // badge
+    // =================================================
+    // BADGE
+    // =================================================
 
     if (resultBadge) {
 
-        if (aiScore >= 70) {
+        if (
+            aiScore >= 70
+        ) {
 
             resultBadge.textContent =
                 "⚠️ Kemungkinan Tinggi";
 
         }
 
-        else if (aiScore >= 40) {
+        else if (
+            aiScore >= 40
+        ) {
 
             resultBadge.textContent =
                 "⚠️ Kemungkinan Sedang";
@@ -1016,15 +1085,17 @@ function analyzeUploadedImage() {
         );
 
 
-
     if (!savedImage) {
+
         return;
+
     }
 
 
 
-    // Analisis sederhana ini
-    // hanya digunakan untuk foto.
+    // =================================================
+    // VIDEO
+    // =================================================
 
     if (
         !savedImage.startsWith(
@@ -1044,7 +1115,6 @@ function analyzeUploadedImage() {
         new Image();
 
 
-
     image.onload =
         function () {
 
@@ -1060,14 +1130,12 @@ function analyzeUploadedImage() {
                 );
 
 
-
             canvas.width =
                 120;
 
 
             canvas.height =
                 120;
-
 
 
             ctx.drawImage(
@@ -1077,7 +1145,6 @@ function analyzeUploadedImage() {
                 canvas.width,
                 canvas.height
             );
-
 
 
             const pixels =
@@ -1090,13 +1157,20 @@ function analyzeUploadedImage() {
 
 
 
-            let brightnessTotal = 0;
+            let brightnessTotal =
+                0;
 
-            const brightnessValues = [];
 
-            let textureTotal = 0;
+            const brightnessValues =
+                [];
 
-            let previousBrightness = null;
+
+            let textureTotal =
+                0;
+
+
+            let previousBrightness =
+                null;
 
 
 
@@ -1118,14 +1192,12 @@ function analyzeUploadedImage() {
                     pixels[i + 2];
 
 
-
                 const brightness =
                     (
                         r +
                         g +
                         b
                     ) / 3;
-
 
 
                 brightnessTotal +=
@@ -1135,7 +1207,6 @@ function analyzeUploadedImage() {
                 brightnessValues.push(
                     brightness
                 );
-
 
 
                 if (
@@ -1152,7 +1223,6 @@ function analyzeUploadedImage() {
                 }
 
 
-
                 previousBrightness =
                     brightness;
 
@@ -1165,9 +1235,8 @@ function analyzeUploadedImage() {
                 brightnessValues.length;
 
 
-
-            let variance = 0;
-
+            let variance =
+                0;
 
 
             brightnessValues.forEach(
@@ -1184,17 +1253,14 @@ function analyzeUploadedImage() {
             );
 
 
-
             variance /=
                 brightnessValues.length;
-
 
 
             const contrast =
                 Math.sqrt(
                     variance
                 );
-
 
 
             const texture =
@@ -1210,7 +1276,6 @@ function analyzeUploadedImage() {
             );
 
         };
-
 
 
     image.src =
@@ -1282,11 +1347,13 @@ function updateImageFactors(
 
 
 
-    // =========================
+    // =================================================
     // PENCAHAYAAN
-    // =========================
+    // =================================================
 
-    if (brightness > 190) {
+    if (
+        brightness > 190
+    ) {
 
         title1.textContent =
             "☀️ Pencahayaan Sangat Terang";
@@ -1297,7 +1364,9 @@ function updateImageFactors(
 
     }
 
-    else if (brightness < 70) {
+    else if (
+        brightness < 70
+    ) {
 
         title1.textContent =
             "🌙 Pencahayaan Cenderung Gelap";
@@ -1321,11 +1390,13 @@ function updateImageFactors(
 
 
 
-    // =========================
+    // =================================================
     // KONTRAS
-    // =========================
+    // =================================================
 
-    if (contrast > 70) {
+    if (
+        contrast > 70
+    ) {
 
         title2.textContent =
             "◐ Kontras Visual Tinggi";
@@ -1336,7 +1407,9 @@ function updateImageFactors(
 
     }
 
-    else if (contrast < 35) {
+    else if (
+        contrast < 35
+    ) {
 
         title2.textContent =
             "◐ Kontras Visual Rendah";
@@ -1360,11 +1433,13 @@ function updateImageFactors(
 
 
 
-    // =========================
+    // =================================================
     // TEKSTUR
-    // =========================
+    // =================================================
 
-    if (texture > 45) {
+    if (
+        texture > 45
+    ) {
 
         title3.textContent =
             "🔍 Detail dan Tekstur Kompleks";
@@ -1375,7 +1450,9 @@ function updateImageFactors(
 
     }
 
-    else if (texture < 18) {
+    else if (
+        texture < 18
+    ) {
 
         title3.textContent =
             "🔍 Tekstur Relatif Halus";
@@ -1488,7 +1565,9 @@ function updateVideoFactors() {
 
 
 
-// Jalankan hanya di result page
+// =====================================================
+// JALANKAN ANALISIS DI RESULT PAGE
+// =====================================================
 
 if (
     document.getElementById(
@@ -1503,8 +1582,7 @@ if (
 
 
 // =====================================================
-// SCROLL REVEAL
-// SATU CARD SETIAP USER SCROLL LAGI
+// SCROLL REVEAL - FACTOR CARD
 // =====================================================
 
 const factorCards =
@@ -1513,22 +1591,24 @@ const factorCards =
     );
 
 
-if (factorCards.length > 0) {
+if (
+    factorCards.length > 0
+) {
 
-    let nextCard = 0;
+    let nextCard =
+        0;
+
 
     let previousScrollY =
         window.scrollY;
 
 
-    let accumulatedScroll = 0;
+    let accumulatedScroll =
+        0;
 
 
-    // Semakin besar angka ini,
-    // semakin jauh user harus scroll
-    // untuk membuka card berikutnya.
-
-    const scrollDistance = 120;
+    const scrollDistance =
+        120;
 
 
 
@@ -1554,16 +1634,17 @@ if (factorCards.length > 0) {
             previousScrollY;
 
 
-
         previousScrollY =
             currentScrollY;
 
 
 
-        // Hanya hitung saat scroll ke bawah
+        if (
+            delta <= 0
+        ) {
 
-        if (delta <= 0) {
             return;
+
         }
 
 
@@ -1591,9 +1672,9 @@ if (factorCards.length > 0) {
 
         if (
             position.top <
-            triggerPoint &&
+                triggerPoint &&
             accumulatedScroll >=
-            scrollDistance
+                scrollDistance
         ) {
 
             card.classList.add(
@@ -1604,7 +1685,8 @@ if (factorCards.length > 0) {
             nextCard++;
 
 
-            accumulatedScroll = 0;
+            accumulatedScroll =
+                0;
 
         }
 
@@ -1622,158 +1704,443 @@ if (factorCards.length > 0) {
 
 }
 
-/* =================================================
-   SCROLL ANIMATION - TIGA LANGKAH
-================================================= */
-
-const stepCards = document.querySelectorAll(".step-card");
-
-const stepObserver = new IntersectionObserver(
-    (entries, observer) => {
-
-        entries.forEach((entry) => {
-
-            if (entry.isIntersecting) {
-
-                entry.target.classList.add("show");
-
-                observer.unobserve(entry.target);
-            }
-
-        });
-
-    },
-    {
-        threshold: 0.2
-    }
-);
 
 
-stepCards.forEach((card) => {
-    stepObserver.observe(card);
-});
+// =====================================================
+// SCROLL ANIMATION - TIGA LANGKAH
+// =====================================================
 
-/* =================================================
-   BANTUAN - INTERAKTIF
-================================================= */
-
-document.addEventListener("DOMContentLoaded", function () {
-
-
-    /* =================================================
-       SCROLL REVEAL
-    ================================================= */
-
-    const helpElements =
-        document.querySelectorAll(".help-reveal");
+const stepCards =
+    document.querySelectorAll(
+        ".step-card"
+    );
 
 
-    if (helpElements.length > 0) {
+if (
+    stepCards.length > 0 &&
+    "IntersectionObserver" in window
+) {
 
-        const revealObserver =
-            new IntersectionObserver(
-                function (entries, observer) {
+    const stepObserver =
+        new IntersectionObserver(
+            function (
+                entries,
+                observer
+            ) {
 
-                    entries.forEach(function (entry) {
+                entries.forEach(
+                    function (entry) {
 
-                        if (entry.isIntersecting) {
+                        if (
+                            entry.isIntersecting
+                        ) {
 
-                            entry.target.classList.add("show");
+                            entry.target.classList.add(
+                                "show"
+                            );
 
-                            observer.unobserve(entry.target);
+
+                            observer.unobserve(
+                                entry.target
+                            );
 
                         }
 
-                    });
+                    }
+                );
 
-                },
-                {
-                    threshold: 0.15
-                }
+            },
+            {
+                threshold: 0.2
+            }
+        );
+
+
+    stepCards.forEach(
+        function (card) {
+
+            stepObserver.observe(
+                card
+            );
+
+        }
+    );
+
+}
+
+
+
+// =====================================================
+// BANTUAN - INTERAKTIF
+// =====================================================
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
+
+        // =================================================
+        // SCROLL REVEAL BANTUAN
+        // =================================================
+
+        const helpElements =
+            document.querySelectorAll(
+                ".help-reveal"
             );
 
 
-        helpElements.forEach(function (element) {
+        if (
+            helpElements.length > 0 &&
+            "IntersectionObserver" in window
+        ) {
 
-            revealObserver.observe(element);
+            const revealObserver =
+                new IntersectionObserver(
+                    function (
+                        entries,
+                        observer
+                    ) {
 
-        });
+                        entries.forEach(
+                            function (entry) {
 
-    }
+                                if (
+                                    entry.isIntersecting
+                                ) {
 
-
-
-    /* =================================================
-       FAQ ACCORDION
-    ================================================= */
-
-    const faqQuestions =
-        document.querySelectorAll(".faq-question");
-
-
-    faqQuestions.forEach(function (question) {
-
-        question.addEventListener("click", function () {
-
-            const faqItem =
-                question.closest(".faq-item");
+                                    entry.target.classList.add(
+                                        "show"
+                                    );
 
 
-            const isOpen =
-                faqItem.classList.contains("open");
+                                    observer.unobserve(
+                                        entry.target
+                                    );
+
+                                }
+
+                            }
+                        );
+
+                    },
+                    {
+                        threshold: 0.15
+                    }
+                );
 
 
-            /* Tutup FAQ lain */
+            helpElements.forEach(
+                function (element) {
 
-            document
-                .querySelectorAll(".faq-item.open")
-                .forEach(function (item) {
+                    revealObserver.observe(
+                        element
+                    );
 
-                    if (item !== faqItem) {
+                }
+            );
 
-                        item.classList.remove("open");
+        }
 
-                        const otherButton =
-                            item.querySelector(".faq-question");
 
-                        if (otherButton) {
 
-                            otherButton.setAttribute(
+        // =================================================
+        // FAQ ACCORDION
+        // =================================================
+
+        const faqQuestions =
+            document.querySelectorAll(
+                ".faq-question"
+            );
+
+
+        faqQuestions.forEach(
+            function (question) {
+
+                question.addEventListener(
+                    "click",
+                    function () {
+
+                        const faqItem =
+                            question.closest(
+                                ".faq-item"
+                            );
+
+
+                        if (!faqItem) {
+                            return;
+                        }
+
+
+                        const isOpen =
+                            faqItem.classList.contains(
+                                "open"
+                            );
+
+
+
+                        // Tutup FAQ lainnya
+
+                        document
+                            .querySelectorAll(
+                                ".faq-item.open"
+                            )
+                            .forEach(
+                                function (item) {
+
+                                    if (
+                                        item !==
+                                        faqItem
+                                    ) {
+
+                                        item.classList.remove(
+                                            "open"
+                                        );
+
+
+                                        const otherButton =
+                                            item.querySelector(
+                                                ".faq-question"
+                                            );
+
+
+                                        if (
+                                            otherButton
+                                        ) {
+
+                                            otherButton.setAttribute(
+                                                "aria-expanded",
+                                                "false"
+                                            );
+
+                                        }
+
+                                    }
+
+                                }
+                            );
+
+
+
+                        // Buka / tutup FAQ
+
+                        if (isOpen) {
+
+                            faqItem.classList.remove(
+                                "open"
+                            );
+
+
+                            question.setAttribute(
                                 "aria-expanded",
                                 "false"
                             );
 
                         }
 
+                        else {
+
+                            faqItem.classList.add(
+                                "open"
+                            );
+
+
+                            question.setAttribute(
+                                "aria-expanded",
+                                "true"
+                            );
+
+                        }
+
                     }
-
-                });
-
-
-            /* Buka / tutup FAQ yang diklik */
-
-            if (isOpen) {
-
-                faqItem.classList.remove("open");
-
-                question.setAttribute(
-                    "aria-expanded",
-                    "false"
-                );
-
-            } else {
-
-                faqItem.classList.add("open");
-
-                question.setAttribute(
-                    "aria-expanded",
-                    "true"
                 );
 
             }
+        );
 
-        });
+    }
+);
 
-    });
 
-});
+
+// =====================================================
+// HOAX IMAGE CAROUSEL
+// =====================================================
+//
+// Versi ini:
+// - Tidak menggunakan tombol kiri / kanan
+// - Tidak menggunakan dots
+// - Tidak menggunakan drag
+// - Tidak menggunakan swipe
+// - Gambar berpindah otomatis
+// - Perpindahan tetap smooth
+// =====================================================
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
+
+        const carousel =
+            document.getElementById(
+                "hoaxCarousel"
+            );
+
+
+        const track =
+            document.getElementById(
+                "hoaxTrack"
+            );
+
+
+        const slides =
+            document.querySelectorAll(
+                ".hoax-slide"
+            );
+
+
+        const prevButton =
+            document.getElementById(
+                "carouselPrev"
+            );
+
+
+        const nextButton =
+            document.getElementById(
+                "carouselNext"
+            );
+
+
+        const dots =
+            document.querySelectorAll(
+                ".carousel-dot"
+            );
+
+
+
+        // =================================================
+        // CEK CAROUSEL
+        // =================================================
+
+        if (
+            !carousel ||
+            !track ||
+            slides.length === 0
+        ) {
+
+            return;
+
+        }
+
+
+
+        // =================================================
+        // SEMBUNYIKAN TOMBOL
+        // =================================================
+
+        if (prevButton) {
+
+            prevButton.style.display =
+                "none";
+
+        }
+
+
+        if (nextButton) {
+
+            nextButton.style.display =
+                "none";
+
+        }
+
+
+
+        // =================================================
+        // SEMBUNYIKAN DOT
+        // =================================================
+
+        dots.forEach(
+            function (dot) {
+
+                dot.style.display =
+                    "none";
+
+            }
+        );
+
+
+
+        // =================================================
+        // POSISI SLIDE
+        // =================================================
+
+        let currentSlide =
+            0;
+
+
+
+        // =================================================
+        // PINDAH SLIDE
+        // =================================================
+
+        function goToSlide(index) {
+
+            if (
+                index >=
+                slides.length
+            ) {
+
+                index = 0;
+
+            }
+
+
+            currentSlide =
+                index;
+
+
+            track.style.transition =
+                "transform 0.8s ease";
+
+
+            track.style.transform =
+                `translateX(-${currentSlide * 100}%)`;
+
+        }
+
+
+
+        // =================================================
+        // NEXT SLIDE
+        // =================================================
+
+        function nextSlide() {
+
+            goToSlide(
+                currentSlide + 1
+            );
+
+        }
+
+
+
+        // =================================================
+        // AUTO SLIDE
+        // =================================================
+
+        setInterval(
+            function () {
+
+                nextSlide();
+
+            },
+            4000
+        );
+
+
+
+        // =================================================
+        // POSISI AWAL
+        // =================================================
+
+        goToSlide(0);
+
+    }
+);

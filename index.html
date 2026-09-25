@@ -2,6 +2,7 @@
 <html lang="id">
 
 <head>
+
     <meta charset="UTF-8">
 
     <meta
@@ -20,29 +21,33 @@
         rel="stylesheet"
         href="css/style.css"
     >
+
 </head>
 
 
 <body>
 
+
     <!-- =================================================
          NAVBAR
     ================================================== -->
+
     <header class="navbar">
 
         <div class="nav-left">
 
-            <!-- LOGO -->
             <a
                 href="index.html"
                 class="logo"
                 aria-label="Kembali ke halaman utama VerityAI"
             >
+
                 <img
                     src="assets/images/icons/logo/logo VerityAI.png"
                     alt="Logo VerityAI"
                     class="logo-image"
                 >
+
             </a>
 
 
@@ -62,16 +67,17 @@
                 Home
             </a>
 
+
             <a href="upload.html">
                 Cek Media
             </a>
+
 
             <a href="bantuan.html">
                 Bantuan
             </a>
 
         </nav>
-
 
     </header>
 
@@ -80,12 +86,14 @@
     <!-- =================================================
          MAIN CONTENT
     ================================================== -->
+
     <main>
 
 
         <!-- =================================================
              HERO
         ================================================== -->
+
         <section class="hero">
 
             <div class="hero-badge">
@@ -104,7 +112,6 @@
             </p>
 
 
-            <!-- HERO BUTTON -->
             <div class="hero-buttons">
 
                 <a
@@ -126,31 +133,38 @@
 
 
             <!-- SOCIAL MEDIA -->
+
             <div class="social-support">
 
                 <div class="social-icons">
 
                     <span>
+
                         <img
                             src="assets/images/social/instagram.png"
                             alt="Instagram"
                         >
+
                     </span>
 
 
                     <span class="whatsapp-icon">
+
                         <img
                             src="assets/images/social/whatsapp.png"
                             alt="WhatsApp"
                         >
+
                     </span>
 
 
                     <span>
+
                         <img
                             src="assets/images/social/tiktok.png"
                             alt="TikTok"
                         >
+
                     </span>
 
                 </div>
@@ -170,6 +184,7 @@
         <!-- =================================================
              TIGA LANGKAH
         ================================================== -->
+
         <section class="steps">
 
             <div class="section-label">
@@ -192,15 +207,18 @@
 
 
                 <!-- STEP 1 -->
+
                 <article class="step-card">
 
                     <div class="number">
                         1
                     </div>
 
+
                     <h3>
                         Unggah
                     </h3>
+
 
                     <p>
                         Foto atau video yang Anda temukan
@@ -212,15 +230,18 @@
 
 
                 <!-- STEP 2 -->
+
                 <article class="step-card">
 
                     <div class="number">
                         2
                     </div>
 
+
                     <h3>
                         Analisis Otomatis
                     </h3>
+
 
                     <p>
                         Sistem memeriksa tanda-tanda
@@ -232,15 +253,18 @@
 
 
                 <!-- STEP 3 -->
+
                 <article class="step-card">
 
                     <div class="number">
                         3
                     </div>
 
+
                     <h3>
                         Hasil Jelas
                     </h3>
+
 
                     <p>
                         Penjelasan sederhana mengenai
@@ -257,9 +281,13 @@
 
 
         <!-- =================================================
-             CTA
+             CTA + AUTO CAROUSEL
         ================================================== -->
+
         <section class="cta">
+
+
+            <!-- TEKS CTA -->
 
             <div class="cta-content">
 
@@ -290,14 +318,69 @@
             </div>
 
 
+
+            <!-- =================================================
+                 GAMBAR CAROUSEL
+                 OTOMATIS BERGANTI
+            ================================================== -->
+
             <div class="cta-image">
 
-                <img
-                    src="assets/images/hoax.png"
-                    alt="Ilustrasi berita hoaks di ponsel"
+                <div
+                    class="hoax-carousel"
+                    id="hoaxCarousel"
                 >
 
+                    <div
+                        class="hoax-track"
+                        id="hoaxTrack"
+                    >
+
+
+                        <!-- GAMBAR 1 -->
+
+                        <div class="hoax-slide">
+
+                            <img
+                                src="assets/images/hoax.png"
+                                alt="Ilustrasi berita hoaks di ponsel"
+                            >
+
+                        </div>
+
+
+
+                        <!-- GAMBAR 2 -->
+
+                        <div class="hoax-slide">
+
+                            <img
+                                src="assets/images/hoax-2.png"
+                                alt="Ilustrasi berita hoaks pada laptop"
+                            >
+
+                        </div>
+
+
+
+                        <!-- GAMBAR 3 -->
+
+                        <div class="hoax-slide">
+
+                            <img
+                                src="assets/images/hoax-3.png"
+                                alt="Ilustrasi dampak hoaks di media sosial"
+                            >
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
             </div>
+
 
         </section>
 
@@ -309,8 +392,11 @@
     <!-- =================================================
          FOOTER
     ================================================== -->
+
     <footer>
+
         VerityAI © 2026
+
     </footer>
 
 
@@ -318,7 +404,9 @@
     <!-- =================================================
          JAVASCRIPT
     ================================================== -->
+
     <script src="js/script.js"></script>
+
 
 </body>
 
